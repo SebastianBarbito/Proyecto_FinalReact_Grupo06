@@ -11,6 +11,7 @@ export default function Layout() {
         <Link to="/proyecto2">Proyecto 2</Link> |{" "}
         <Link to="/proyecto03">Proyecto 03</Link> | {" "}
         <Link to="/AppProyecto03">Proyecto 04</Link> | {" "}
+        <Link to="/AppEstrella">Proyecto 05</Link> | {" "}
       </nav>
       <hr />
 
