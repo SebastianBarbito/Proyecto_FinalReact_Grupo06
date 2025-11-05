@@ -11,6 +11,7 @@ import ListJuegos from './assets/Pages/ListJuegos';
 import Proyecto2 from "./assets/Pages/Proyecto2";
 import Proyecto03 from './assets/Pages/Proyecto03';
 import AppProyecto03 from './PoyectosAnteriores/Proyecto_03/csr/AppProyecto03';
+import AppEstrella from './PoyectosAnteriores/Proyecto04/AppEstrella';
 // Si más adelante agregás Games o Users, usar:
 // import Games from './assets/Pages/Games';
 // import Users from './assets/Pages/Users';
@@ -27,6 +28,7 @@ function App() {
           <Route path="proyecto2" element={<Proyecto2 />} />
           <Route path="proyecto03" element={<Proyecto03/>} />
            <Route path="AppProyecto03" element={<AppProyecto03/>} />
+           <Route path="/AppEstrella*" element={<AppEstrella/>} />
           
 
           {/* Rutas protegidas */}
