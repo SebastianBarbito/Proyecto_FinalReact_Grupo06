@@ -1,0 +1,128 @@
+:root{
+  /* Palette */
+  --bg-1: #FFFBF0; /* warm cream */
+  --bg-2: #FFEFDB; /* soft peach */
+  --accent-1: #FF6B6B; /* coral */
+  --accent-2: #FFD93D; /* sunny yellow */
+  --accent-3: #6BCB77; /* mint */
+  --accent-4: #4D96FF; /* sky blue */
+  --card: #FFFFFF;
+  --muted: #6b6b6b;
+  --text: #213547;
+  --glass: rgba(255,255,255,0.6);
+  --radius: 14px;
+}
+
+/* Friendly, rounded typography */
+html,body,#root{
+  height:100%;
+}
+body{
+  background: radial-gradient(1200px 400px at 10% 10%, var(--bg-2), transparent 20%),
+              radial-gradient(1000px 350px at 90% 90%, #E8F6FF, transparent 15%),
+              linear-gradient(180deg,var(--bg-1), #F8F9FF 70%);
+  font-family: "Comic Sans MS", "Trebuchet MS", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* playful floating shapes background for large screens */
+body::before{
+  content:"";
+  position:fixed;
+  left:-10vw;
+  top:-6vh;
+  width:35vw;
+  height:35vw;
+  background: conic-gradient(from 180deg at 50% 50%, var(--accent-4), var(--accent-3), var(--accent-2));
+  opacity:0.08;
+  border-radius:50%;
+  pointer-events:none;
+  transform: rotate(12deg);
+}
+body::after{
+  content:"";
+  position:fixed;
+  right:-8vw;
+  bottom:-10vh;
+  width:30vw;
+  height:30vw;
+  background: conic-gradient(from 90deg at 50% 50%, var(--accent-1), var(--accent-2), var(--accent-3));
+  opacity:0.07;
+  border-radius:50%;
+  pointer-events:none;
+}
+
+/* Cards */
+.card, .login-form, .team-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--card));
+  border-radius: var(--radius);
+  box-shadow: 0 12px 30px rgba(34, 60, 80, 0.08);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Buttons */
+.btn-kid{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  padding:.7rem 1.0rem;
+  border-radius: 999px;
+  border:none;
+  color:#fff;
+  background: linear-gradient(90deg, var(--accent-4), var(--accent-3));
+  box-shadow: 0 8px 18px rgba(77,150,255,0.18);
+  font-weight:700;
+  transform: translateZ(0);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.btn-kid:hover{ transform: translateY(-4px); box-shadow: 0 18px 36px rgba(77,150,255,0.2); }
+.btn-kid:active{ transform: translateY(-1px); }
+
+/* Accent badges */
+.badge-kid{
+  background: linear-gradient(90deg,var(--accent-2),var(--accent-1));
+  color: #122;
+  padding:.3rem .6rem;
+  border-radius:999px;
+  font-weight:700;
+}
+
+/* Inputs */
+input, textarea, select {
+  border-radius: 12px;
+  padding: .6rem .8rem;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), #fff);
+  transition: box-shadow .18s ease, transform .12s ease, border-color .12s ease;
+}
+input:focus, textarea:focus, select:focus{
+  outline: none;
+  border-color: rgba(77,150,255,0.9);
+  box-shadow: 0 8px 24px rgba(77,150,255,0.12);
+  transform: translateY(-2px);
+}
+
+/* playful small animations */
+.bounce{ animation: bounce-anim 2s infinite; }
+@keyframes bounce-anim{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} }
+
+/* headings */
+h1,h2,h3{ font-weight:800; letter-spacing: -0.5px; }
+h1{ font-size: 2.2rem; }
+
+/* utility for colorful outlines */
+.outline-kid{ box-shadow: 0 8px 20px rgba(255,215,0,0.08); border:2px dashed rgba(255,215,0,0.12); }
+
+/* responsive tweaks */
+@media (max-width:640px){
+  h1{ font-size:1.6rem }
+  .btn-kid{ padding:.6rem .9rem }
+}
+
+/* small playful icon inside inputs */
+.input-icon{ position: relative; }
+.input-icon input{ padding-left:2.6rem }
+.input-icon .icon{ position:absolute; left:.6rem; top:50%; transform:translateY(-50%); opacity:0.9 }

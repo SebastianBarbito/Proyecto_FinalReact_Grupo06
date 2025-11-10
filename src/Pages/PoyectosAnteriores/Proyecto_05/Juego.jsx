@@ -6,7 +6,8 @@ import FormJuegos from "./Componets/formJuegos";
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/styles/Games.css'
-function Games () {
+
+export default function Juegos () {
     const navegacion = useNavigate();
 
     const ejecutarSonido = () => {
@@ -82,5 +83,3 @@ function Games () {
         </Container>
     );
 };
-
-export default Games;

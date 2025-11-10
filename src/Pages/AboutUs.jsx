@@ -1,5 +1,5 @@
-import '../style/AboutUs.css';
-import logo from '../img/logo.png';
+import '../assets/style/AboutUs.css';
+import logo from '../assets/img/logo.png';
 
 const team = [
     { name: 'Barbito Sebastian Rodrigo', github: 'https://github.com/SebastianBarbito' },
