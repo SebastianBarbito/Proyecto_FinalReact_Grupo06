@@ -30,8 +30,13 @@ routes.get('/obtenerUsuarios', async (req, res) => {
 // Crear un nuevo usuario
 routes.post('/crearUsuario', async (req, res) => {
     try {
-        const { username, correo, password, rol, nombre } = req.body;
-        console.log('Datos recibidos:', { username, correo, rol, nombre });
+        let { username, correo, password, rol, nombre } = req.body;
+        // Limpiar espacios en blanco
+        username = username?.trim();
+        correo = correo?.trim();
+        password = password?.trim();
+        nombre = nombre?.trim();
+        console.log('Datos recibidos (limpios):', { username, correo, rol, nombre });
 
         if (!username || !password || !nombre || !correo) {
             return res.status(400).json({ message: 'username, correo, password y nombre son requeridos' });
@@ -71,15 +76,21 @@ routes.post('/crearUsuario', async (req, res) => {
     // Login: validar credenciales
     routes.post('/login', async (req, res) => {
         try {
-            // Permitimos que el usuario ingrese su username o correo para autenticarse
-            const { username, password } = req.body;
-            console.log('Intento de login:', { username });
+            // Permitimos que el usuario ingrese su username o correo (o email) para autenticarse
+            let { username, password, email } = req.body;
+            // Limpiar espacios en blanco
+            username = username?.trim();
+            password = password?.trim();
+            email = email?.trim();
+            // Usar el primer identificador disponible (username o email)
+            const identifier = username || email;
+            console.log('Intento de login (identifier):', { identifier });
 
-            if (!username || !password) {
-                return res.status(400).json({ message: 'username (o correo) y password son requeridos' });
+            if (!identifier || !password) {
+                return res.status(400).json({ message: 'username (o correo/email) y password son requeridos' });
             }
 
-            const usuario = await Usuario.findOne({ $or: [ { username }, { correo: username } ] }).lean();
+            const usuario = await Usuario.findOne({ $or: [ { username: identifier }, { correo: identifier } ] }).lean();
             console.log('Usuario encontrado:', usuario ? 'sí' : 'no');
 
             if (!usuario) {

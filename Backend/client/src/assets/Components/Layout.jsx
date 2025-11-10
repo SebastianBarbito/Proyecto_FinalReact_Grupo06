@@ -6,8 +6,13 @@ export default function Layout() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    console.log('Cerrando sesión...');
     logout();
-    navigate('/login');
+    console.log('Usuario después de logout:', usuario);
+    // Forzar la navegación de manera síncrona
+    setTimeout(() => {
+      navigate('/', { replace: true });
+    }, 100);
   };
 
   return (
