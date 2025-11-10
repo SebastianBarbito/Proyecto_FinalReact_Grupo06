@@ -1,7 +1,11 @@
+import Login from '../Components/Login';
+
 function Home() {
-    return(
-        <h1>Home</h1>
-    )
+    return (
+        <div className="home-container">
+            <Login />
+        </div>
+    );
 }
 
 export default Home;

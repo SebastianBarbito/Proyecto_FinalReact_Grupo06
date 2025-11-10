@@ -1,0 +1,31 @@
+.div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+#circulo{
+    border: 1px solid#000000;
+    background-color: #ffa5e4;
+    height: 100pt;
+    width: 100pt;
+    margin-left: -50px;
+    border-radius: 50% 0% 50% 50%;
+}
+.c1{
+    margin-top: 150pt;
+    margin-bottom: 50pt;
+    z-index: 2;
+}
+.c2{
+    margin-top: 100pt;
+    margin-bottom: 100pt;
+    z-index: 1;
+    
+}
+.c3{
+    margin-top: 50pt;
+    margin-bottom: 150pt;
+    transform: scale(-1);
+    z-index: -1;
+}

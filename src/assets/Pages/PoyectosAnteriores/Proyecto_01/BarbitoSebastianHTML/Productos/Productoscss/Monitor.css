@@ -1,0 +1,216 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+.product-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.product-gallery {
+    position: sticky;
+    top: 2rem;
+}
+
+.main-image {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.product-info {
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.product-category {
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.product-title {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+    color: #1e3c72;
+}
+
+.price-container {
+    margin: 1.5rem 0;
+}
+
+.original-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 1.5rem;
+}
+
+.discount-badge {
+    background: #ff4e50;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.final-price {
+    font-size: 2.5rem;
+    color: #2a5298;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.savings {
+    color: #4CAF50;
+    font-weight: 500;
+}
+
+.product-description {
+    margin: 2rem 0;
+    line-height: 1.8;
+}
+
+.features-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.features-list li {
+    margin: 1rem 0;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.features-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.shipping-info {
+    background: #e8f5e9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.shipping-info h3 {
+    margin: 0 0 1rem 0;
+    color: #2e7d32;
+}
+
+.shipping-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.shipping-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.shipping-item i {
+    color: #2e7d32;
+}
+
+.buy-button {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.buy-button:hover {
+    transform: translateY(-2px);
+}
+
+.stock-info {
+    text-align: center;
+    margin: 1rem 0;
+    color: #666;
+}
+
+.technical-specs {
+    margin: 2rem 0;
+    border-top: 2px solid #e9ecef;
+    padding-top: 2rem;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.spec-item {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.spec-item h4 {
+    margin: 0 0 0.5rem 0;
+    color: #1e3c72;
+}
+
+.spec-item p {
+    margin: 0;
+    color: #666;
+}
+
+.guarantee-info {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #fff3e0;
+    border-radius: 10px;
+}
+
+.guarantee-info h3 {
+    margin: 0 0 1rem 0;
+    color: #ef6c00;
+}
+
+.payment-methods {
+    margin-top: 2rem;
+}
+
+.payment-methods h3 {
+    margin-bottom: 1rem;
+}
+
+.payment-icons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.payment-icons i {
+    font-size: 2rem;
+    color: #666;
+}
