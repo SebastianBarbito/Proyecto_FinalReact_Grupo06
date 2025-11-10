@@ -1,25 +1,23 @@
 import { Routes, Route } from 'react-router-dom';
-import { AutorizacionProvider } from '../Context/AutorizacionContext';
-import Layout from './assets/Components/Layout';
-import Home from './assets/Pages/Home';
-import AboutUs from './assets/Pages/AboutUs';
-import Login from './assets/Components/Login';
-import Registrar from './assets/Components/Registrar';
-import Error from './assets/Pages/Error';
-import ProtectorRutas from './assets/Components/ProtectorRutas';
-import ListJuegos from './assets/Pages/ListJuegos';
-// Use Vite's asset URL helper so HTML files inside `src` are served correctly.
-// This builds an absolute URL to the file at runtime (works in dev and build).
-const barbitoHtml = new URL('./assets/Pages/PoyectosAnteriores/Proyecto_01/BarbitoSebastianHTML/index.html', import.meta.url).href;
-const camperoHtml = new URL('./assets/Pages/PoyectosAnteriores/Proyecto_01/CamperoCruzHTML/index.html', import.meta.url).href;
-const mamaniHtml = new URL('./assets/Pages/PoyectosAnteriores/Proyecto_01/MamaniLautaroHTML/index.html', import.meta.url).href;
-const martinezHtml = new URL('./assets/Pages/PoyectosAnteriores/Proyecto_01/MartinezSebastianHTML/index.html', import.meta.url).href;
-const munozHtml = new URL('./assets/Pages/PoyectosAnteriores/Proyecto_01/MunozRominaHTML/index.html', import.meta.url).href;
-const menuHtml = new URL('./assets/Pages/PoyectosAnteriores/Proyecto_02/Menu.html', import.meta.url).href;
-const registroMascotasHtml = new URL('./assets/Pages/PoyectosAnteriores/Proyecto_03/RegistroMascotas.html', import.meta.url).href;
-import AppProyecto03 from './assets/Pages/PoyectosAnteriores/Proyecto_04/AppProyecto03';
-import Games from './assets/Pages/PoyectosAnteriores/Proyecto_05/Games';
-import JuegoEstrella from './assets/Pages/PoyectosAnteriores/Proyecto_05/Componets/JuegoEstrella';
+import { AutorizacionProvider } from './Context/AutorizacionContext';
+import Layout from './Pages/Layout';
+import Home from './Pages/Home';
+import AboutUs from './Pages/AboutUs';
+import Login from './Pages/Login';
+import Registrar from './Components/Registrar';
+import Error from './Pages/Error';
+import ProtectorRutas from './Components/ProtectorRutas';
+import Games from './Pages/Games';
+const barbitoHtml = new URL('./Pages/PoyectosAnteriores/Proyecto_01/BarbitoSebastianHTML/index.html', import.meta.url).href;
+const camperoHtml = new URL('./Pages/PoyectosAnteriores/Proyecto_01/CamperoCruzHTML/index.html', import.meta.url).href;
+const mamaniHtml = new URL('./Pages/PoyectosAnteriores/Proyecto_01/MamaniLautaroHTML/index.html', import.meta.url).href;
+const martinezHtml = new URL('./Pages/PoyectosAnteriores/Proyecto_01/MartinezSebastianHTML/index.html', import.meta.url).href;
+const munozHtml = new URL('./Pages/PoyectosAnteriores/Proyecto_01/MunozRominaHTML/index.html', import.meta.url).href;
+const menuHtml = new URL('./Pages/PoyectosAnteriores/Proyecto_02/Menu.html', import.meta.url).href;
+const registroMascotasHtml = new URL('./Pages/PoyectosAnteriores/Proyecto_03/RegistroMascotas.html', import.meta.url).href;
+import AppProyecto03 from './Pages/PoyectosAnteriores/Proyecto_04/AppProyecto03';
+import Juegos from './Pages/PoyectosAnteriores/Proyecto_05/Juego';
+import JuegoEstrella from './Pages/PoyectosAnteriores/Proyecto_05/Componets/JuegoEstrella';
 
 const IframeWrapper = ({ src, title }) => (
   <div style={{ width: '100%', height: '100vh' }}>
@@ -56,15 +54,15 @@ function App() {
           <Route path="proyecto02" element={<Menu />} />
           <Route path="proyecto03" element={<RegistroMascotas />} />
           <Route path="proyecto04" element={<AppProyecto03 />} />
-          <Route path="Games" element={<Games />} />
+          <Route path="Juego" element={<Juegos />} />
           <Route path="JuegoEstrella" element={<JuegoEstrella />} />
 
           {/* Rutas protegidas */}
           <Route
-            path="juegos"
+            path="Games"
             element={
               <ProtectorRutas>
-                <ListJuegos />
+                <Games />
               </ProtectorRutas>
             }
           />

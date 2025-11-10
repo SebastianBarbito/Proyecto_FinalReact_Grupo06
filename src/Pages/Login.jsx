@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAutorizacion } from '../../../hooks/useAutorizacion';
-import './Login.css';
+import { useAutorizacion } from '../hooks/useAutorizacion';
+import '../assets/style/Login.css';
 
 export default function Login() {
   const { login } = useAutorizacion();
@@ -12,7 +12,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (login(email, password)) {
-      nav('/juegos');
+      nav('/'); // Redirigimos al home, que mostrará la página de bienvenida
     } else {
       alert('Credenciales inválidas');
     }

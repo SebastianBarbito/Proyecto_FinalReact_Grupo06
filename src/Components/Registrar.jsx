@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useAutorizacion } from '../hooks/useAutorizacion';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button, ListGroup, Badge } from 'react-bootstrap';
 
 function Registrar() {
     const nav = useNavigate();
+    const { login } = useAutorizacion();
     const [form, setForm] = useState({
         nombre: '',
         apellido: '',
@@ -61,8 +63,15 @@ function Registrar() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            alert('Registro exitoso. Ahora puede iniciar sesión.');
-            nav('/login');
+            // Autenticar automáticamente tras registro
+            const ok = login(form.email, form.password);
+            if (ok) {
+                alert('¡Registro exitoso! Ya puedes acceder a los juegos.');
+                nav('/juegos');
+            } else {
+                alert('Ocurrió un error al autenticar. Intenta iniciar sesión manualmente.');
+                nav('/login');
+            }
         }
     };
 
