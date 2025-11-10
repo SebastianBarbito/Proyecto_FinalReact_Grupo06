@@ -1,0 +1,95 @@
+.about-container{
+    padding:2rem;
+    max-width:1000px;
+    margin:0 auto;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#222
+}
+.about-hero{
+    text-align:center;
+    margin-bottom:1.5rem
+}
+.about-hero .about-logo{
+    width:300px;
+    height:auto;
+    display:block;
+    margin:0 auto .6rem auto;
+    border-radius:8px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+.about-hero h1{
+    font-size:2rem;
+    color:#0d6efd;
+    margin-bottom:.25rem
+}
+.about-hero .lead{
+    color:#444;
+    margin:0 auto;
+    max-width:720px
+}
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1rem;
+    margin-top:1.25rem
+}
+.team-card{
+    background:#fff;
+    border:1px solid #e6e6e6;
+    border-radius:8px;
+    padding:1rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    box-shadow:0 2px 6px rgba(13,110,253,0.06);
+    transition:transform .15s ease,box-shadow .15s ease
+}
+.team-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 8px 24px rgba(13,110,253,0.12)
+}
+.avatar{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#0d6efd,#6610f2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:700;
+    font-size:1.25rem;
+    margin-bottom:.75rem
+}
+.member-name{
+    margin:.25rem 0 .5rem 0;
+    text-align:center;
+    font-size:1rem
+}
+.member-role{
+    margin:0;
+    color:#6c757d;
+    font-size:.9rem
+}
+.github-link{
+    margin-top:.75rem;
+    display:inline-block;
+    padding:.4rem .7rem;
+    background:#0d6efd;
+    color:#fff;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:600
+}
+.github-link:hover{
+    background:#0b5ed7
+}
+@media (max-width:480px){
+    .about-container{
+        padding:1rem
+    }
+    .about-hero h1{
+        font-size:1.5rem
+    }
+    .about-hero .about-logo{ width:88px }
+}

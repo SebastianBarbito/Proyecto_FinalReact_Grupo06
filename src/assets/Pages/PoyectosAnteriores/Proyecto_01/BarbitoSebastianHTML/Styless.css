@@ -1,0 +1,106 @@
+.layout{
+    height: auto;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aqua;
+    
+}
+.nav{
+    display: flex;
+    background-color: aquamarine;
+    margin: 4px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    
+}
+.nav ul{
+    margin-left: 150px;
+}
+.main{
+    display: flex;
+    justify-content: space-between;
+    background-color: aquamarine;
+    margin: 4px;
+    flex-wrap: 1;
+}
+.producto-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.prucducto_card{
+    flex-basis: 100px;
+    flex-grow: 1;
+    text-align: center;
+    text-decoration: none;
+    border-width: 2px;
+}
+.footer-conteiner{
+    display: flex;
+    gap: 70px;
+    background-color: aquamarine;
+    margin: 4px;
+    align-content: flex-start;
+}
+.navegacion {
+    width: 350px;
+    background-color: rgb(204, 175, 10);
+    margin: 4px;
+}
+.Nombre{
+    width: 55%;
+}
+.prucducto_card{
+    height: 80px;
+    width: 80px;
+    margin: 4px;
+}
+.tex-center{
+    text-align: center;
+}
+.Logo{
+    background-size: cover;
+    height: 100px;
+    width: auto;
+    margin: 2px;
+    margin-left: 30px;
+
+}
+.producto-container div{
+    margin-left: 150px;
+    margin-top: 25px;
+}
+.Desafio{
+    display: flex;
+    margin-top: 30%;
+    margin-left: 40%;
+}
+.Desafio div{
+    height: 100px;
+    width: 100px;
+    border-radius: 50% 0% 50% 50%;
+}
+.Revelde{
+    background-color: aqua;
+    position: relative;
+    bottom: 50px;
+    right: 25px;
+    z-index: 2;
+    transition: rotate(odeg);
+}
+.Revelde2{
+    background-color: brown;
+    position: relative;
+    bottom: 100px;
+    right: 50px;
+    transform: rotate(180deg);
+}
+.Revelde3{
+    background-color: blueviolet;
+    z-index: 5;
+    transition: rotate(odeg);
+}

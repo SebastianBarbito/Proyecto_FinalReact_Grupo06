@@ -1,0 +1,126 @@
+.layout{
+display: grid;
+height: 100vh;
+
+grid-template-areas: 
+"header header"
+"nav main"
+"footer footer";
+
+grid-template-rows: 100px 1fr 130px;
+grid-template-columns: 300px 1fr;
+gap: 10px;
+}
+body{
+    background-color: black;
+}
+
+header{
+grid-area: header;
+background-color:white;
+display: flex;
+}
+
+.logo{
+    margin: 10px;
+}
+
+.nombre{
+    margin-top: -10px;
+    margin-inline: 35%;
+}
+
+nav{
+grid-area: nav;
+background-color: white;
+}
+
+.nav ul li{
+    margin-bottom: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+
+main{
+grid-area: main;
+background-color: white;
+}
+
+.Productos{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.producto{
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+    margin-inline:70px;
+}
+
+footer{
+grid-area: footer;
+background-color: white;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-desafio{
+    background-color: #f0f0f0;
+}
+
+.body-desafio{
+    background-color: #f0f0f0;
+}
+
+.dibujo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.dibujo{
+    display: grid;
+    justify-content: space-around;
+}
+
+.dib1{
+    width: 100px;
+    height: 100px;
+    border-radius: 50% 0% 50% 50%;
+    background-color: blue;
+    border: black solid;
+   transform: scale(-1);
+    margin-inline: 100px;
+    margin-top: -100px;
+}
+
+.dib2{
+    width: 100px;
+    height: 100px;
+    border-radius: 50% 0% 50% 50%;
+    background-color: blue;
+    border: black solid;
+    margin-inline: 50px;
+    margin-top: -50px;
+    transform: scale(1);
+}
+
+.dib3{
+    width: 100px;
+    height: 100px;
+    border-radius: 50% 0% 50% 50%;
+    background-color: blue;
+    border: black solid;
+    transform: scale(1);
+}
