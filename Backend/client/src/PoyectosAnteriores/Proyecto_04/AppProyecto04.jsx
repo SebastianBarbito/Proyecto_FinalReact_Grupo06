@@ -3,7 +3,7 @@ import Saludo from './componentes/saludo.jsx'
 import Colores from './componentes/colores.jsx'
 import Numeros from './componentes/numeros.jsx'
 
-function AppProyecto03() {
+export default function AppProyecto04() {
    return (
     <>
       <Saludo/>
@@ -13,5 +13,3 @@ function AppProyecto03() {
      
    )
 }
-
-export default AppProyecto03

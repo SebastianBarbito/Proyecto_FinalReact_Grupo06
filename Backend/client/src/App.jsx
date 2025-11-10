@@ -1,61 +1,84 @@
 import { Routes, Route } from 'react-router-dom';
-import { AutorizacionProvider } from './Context/AutorizacionContext.jsx';
-import Layout from './assets/Components/Layout.jsx';
-import Home from './assets/Pages/Home.jsx';
-import AboutUs from './assets/Pages/AboutUs.jsx';
-import Login from './assets/Components/Login.jsx';
-import Registrar from './assets/Components/Registrar';
-import Error from './assets/Pages/Error';
-import ProtectorRutas from './assets/Components/ProtectorRutas';
-import ListJuegos from './assets/Pages/ListJuegos';
-import { useEffect } from 'react';
-import axiosInstance from './config/axiosConfig';
-import OldProyecto1 from './assets/Pages/OldProyecto1';
-import OldProyecto2 from './assets/Pages/OldProyecto2';
-import OldProyecto3 from './assets/Pages/OldProyecto3';
-import OldProyecto4 from './assets/Pages/OldProyecto4';
-// Si más adelante agregás Games o Users, usar:
-// import Games from './assets/Pages/Games';
-// import Users from './assets/Pages/Users';
+import { AutorizacionProvider } from './Context/AutorizacionContext';
+import Layout from './Pages/Layout';
+import Home from './Pages/Home';
+import AboutUs from './Pages/AboutUs';
+import Login from './Pages/Login';
+import Registrar from './Components/Registrar';
+import Error from './Pages/Error';
+import ProtectorRutas from './Components/ProtectorRutas';
+import Games from './Pages/Games';
+// Corregida la ruta de los imports de AppProyecto04, Juegos y JuegoEstrella (faltaba 'Pages/')
+import AppProyecto04 from './PoyectosAnteriores/Proyecto_04/AppProyecto04';
+import Juegos from './PoyectosAnteriores/Proyecto_05/Juego';
+import JuegoEstrella from './PoyectosAnteriores/Proyecto_05/Componets/JuegoEstrella';
+
+// HTML Imports (Se mantienen iguales, la ruta estaba bien)
+const barbitoHtml = new URL('./PoyectosAnteriores/Proyecto_01/BarbitoSebastianHTML/index.html', import.meta.url).href;
+const camperoHtml = new URL('./PoyectosAnteriores/Proyecto_01/CamperoCruzHTML/index.html', import.meta.url).href;
+const mamaniHtml = new URL('./PoyectosAnteriores/Proyecto_01/MamaniLautaroHTML/index.html', import.meta.url).href;
+const martinezHtml = new URL('./PoyectosAnteriores/Proyecto_01/MartinezSebastianHTML/index.html', import.meta.url).href;
+const munozHtml = new URL('./PoyectosAnteriores/Proyecto_01/MunozRominaHTML/index.html', import.meta.url).href;
+const menuHtml = new URL('./PoyectosAnteriores/Proyecto_02/Menu.html', import.meta.url).href;
+const registroMascotasHtml = new URL('./PoyectosAnteriores/Proyecto_03/RegistroMascotas.html', import.meta.url).href;
+
+
+const IframeWrapper = ({ src, title }) => (
+  <div style={{ width: '100%', height: '100vh' }}>
+    <iframe
+      src={src}
+      title={title}
+      style={{ width: '100%', height: '100%', border: 'none' }}
+    />
+  </div>
+);
+
+const BarbitoSebastian = () => <IframeWrapper src={barbitoHtml} title="BarbitoSebastian" />;
+const CamperoCruz = () => <IframeWrapper src={camperoHtml} title="CamperoCruz" />;
+const MamaniLautaro = () => <IframeWrapper src={mamaniHtml} title="MamaniLautaro" />;
+const MartinezSebastian = () => <IframeWrapper src={martinezHtml} title="MartinezSebastian" />;
+const MunozRomina = () => <IframeWrapper src={munozHtml} title="MunozRomina" />;
+const Menu = () => <IframeWrapper src={menuHtml} title="Menu" />;
+const RegistroMascotas = () => <IframeWrapper src={registroMascotasHtml} title="RegistroMascotas" />;
 
 function App() {
-  // Verificar la conexión con el backend al inicio
-  useEffect(() => {
-    const verificarConexion = async () => {
-      try {
-        await axiosInstance.get('/health');
-        console.log('Conexión con el backend establecida');
-      } catch (error) {
-        console.error('Error al conectar con el backend:', error);
-      }
-    };
-
-    verificarConexion();
-  }, []);
-
   return (
     <AutorizacionProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* Rutas públicas */}
           <Route index element={<Home />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Registrar />} />
 
-          {/* Proyectos anteriores (acceso directo) */}
-          <Route path="anteriores/proyecto1" element={<OldProyecto1 />} />
-          <Route path="anteriores/proyecto2" element={<OldProyecto2 />} />
-          <Route path="anteriores/proyecto3" element={<OldProyecto3 />} />
-          <Route path="anteriores/proyecto4" element={<OldProyecto4 />} />
+          {/* RUTAS PROYECTO 01 (Se mantienen con el prefijo "proyecto01/") */}
+          <Route path="proyecto01/barbitosebastianhtml" element={<BarbitoSebastian />} />
+          <Route path="proyecto01/camperocruzhtml" element={<CamperoCruz />} />
+          <Route path="proyecto01/mamanilautarhtml" element={<MamaniLautaro />} />
+          <Route path="proyecto01/martinezsebastianhtml" element={<MartinezSebastian />} />
+          <Route path="proyecto01/munozrominahtml" element={<MunozRomina />} />
 
-          {/* Rutas protegidas */}
-          <Route element={<ProtectorRutas />}>
-            <Route path="juegos" element={<ListJuegos />} />
-          </Route>
+          {/* RUTAS PROYECTO 02, 03, 04 (Se mantienen sin sufijos adicionales) */}
+          <Route path="proyecto02" element={<Menu />} />
+          <Route path="proyecto03" element={<RegistroMascotas />} />
+          <Route path="proyecto04" element={<AppProyecto04 />} />
+          
+          {/* RUTAS PROYECTO 05 (Unificadas a minúsculas) */}
+          <Route path="juego" element={<Juegos />} />
+          <Route path="juegoestrella" element={<JuegoEstrella />} />
+
+          {/* Ruta protegida (Unificada a minúsculas y usada como ruta principal de juegos) */}
+          <Route
+            path="games"
+            element={
+              <ProtectorRutas>
+                <Games />
+              </ProtectorRutas>
+            }
+          />
         </Route>
 
-        {/* Ruta de error */}
+        {/* Ruta de error fuera del layout */}
         <Route path="*" element={<Error />} />
       </Routes>
     </AutorizacionProvider>

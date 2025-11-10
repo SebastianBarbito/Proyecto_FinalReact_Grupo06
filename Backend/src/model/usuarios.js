@@ -10,7 +10,11 @@ const usuarioSchema = new Schema({
     correo: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     rol: { type: String, enum: ['alumno'], default: 'alumno' },
-    nombre: { type: String, required: true }
+    nombre: { type: String, required: true },
+    apellido: { type: String, required: true }, 
+    edad: { type: Number, required: true, min: 1 }, 
+    motivo: { type: String, required: true }, 
+    horas: { type: Number, required: true, min: 0 } 
 });
 
 const Usuario = mongoose.models.Usuario || mongoose.model('Usuario', usuarioSchema);
@@ -30,30 +34,33 @@ routes.get('/obtenerUsuarios', async (req, res) => {
 // Crear un nuevo usuario
 routes.post('/crearUsuario', async (req, res) => {
     try {
-        let { username, correo, password, rol, nombre } = req.body;
-        // Limpiar espacios en blanco
+        let { username, correo, password, rol, nombre, apellido, edad, motivo, horas } = req.body;
+        
         username = username?.trim();
         correo = correo?.trim();
         password = password?.trim();
         nombre = nombre?.trim();
-        console.log('Datos recibidos (limpios):', { username, correo, rol, nombre });
+        apellido = apellido?.trim();
+        motivo = motivo?.trim();
+        edad = Number(edad);
+        horas = Number(horas);
 
-        if (!username || !password || !nombre || !correo) {
-            return res.status(400).json({ message: 'username, correo, password y nombre son requeridos' });
+        console.log('Datos recibidos (limpios):', { username, correo, rol, nombre, apellido, edad, motivo, horas });
+
+        if (!username || !password || !nombre || !correo || !apellido || !motivo || isNaN(edad) || isNaN(horas) || edad <= 0 || horas < 0) {
+            return res.status(400).json({ message: 'Todos los campos (username, correo, password, nombre, apellido, edad, motivo, horas) son requeridos y válidos' });
         }
-
-        // Verificar si username o correo ya existen
-        const existente = await Usuario.findOne({ $or: [{ username }, { correo }] });
-        if (existente) {
-            return res.status(409).json({ message: 'Usuario o correo ya existe' });
-        }
-
+        
         const nuevo = new Usuario({
             username,
             correo,
             password,
             rol: rol || 'alumno',
-            nombre
+            nombre,
+            apellido,    // Nuevo
+            edad,        // Nuevo
+            motivo,      // Nuevo
+            horas        // Nuevo
         });
 
         await nuevo.save();
@@ -74,21 +81,24 @@ routes.post('/crearUsuario', async (req, res) => {
 });
 
     // Login: validar credenciales
-    routes.post('/login', async (req, res) => {
-        try {
-            // Permitimos que el usuario ingrese su username o correo (o email) para autenticarse
-            let { username, password, email } = req.body;
-            // Limpiar espacios en blanco
-            username = username?.trim();
-            password = password?.trim();
-            email = email?.trim();
-            // Usar el primer identificador disponible (username o email)
-            const identifier = username || email;
-            console.log('Intento de login (identifier):', { identifier });
+routes.post('/login', async (req, res) => {
+    try {
+        // AÑADIR 'correo' a la de-estructuración de req.body
+        let { username, password, email, correo } = req.body; 
+        
+        // Limpiar espacios en blanco
+        username = username?.trim();
+        password = password?.trim();
+        email = email?.trim();
+        correo = correo?.trim(); // Nuevo
 
-            if (!identifier || !password) {
-                return res.status(400).json({ message: 'username (o correo/email) y password son requeridos' });
-            }
+        // Usar el primer identificador disponible (username, correo, o email)
+        const identifier = username || correo || email; // <-- CORRECCIÓN CLAVE
+        console.log('Intento de login (identifier):', { identifier });
+
+        if (!identifier || !password) {
+            return res.status(400).json({ message: 'username (o correo/email) y password son requeridos' });
+        }
 
             const usuario = await Usuario.findOne({ $or: [ { username: identifier }, { correo: identifier } ] }).lean();
             console.log('Usuario encontrado:', usuario ? 'sí' : 'no');

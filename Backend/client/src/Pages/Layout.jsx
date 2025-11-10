@@ -21,20 +21,26 @@ export default function Layout() {
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">Inicio</Nav.Link>
               <Nav.Link as={Link} to="/about">Nosotros</Nav.Link>
-              <Nav.Link as={Link} to="/games">Juegos</Nav.Link>
+              {/* Enlace principal de Juegos, apunta a la ruta protegida */}
+              <Nav.Link as={Link} to="/games">Juegos</Nav.Link> 
+
               <NavDropdown title="Proyecto 01" id="proyecto01-nav-dropdown">
+                {/* RUTAS RESTAURADAS con el prefijo "/proyecto01/" */}
                 <NavDropdown.Item as={Link} to="/proyecto01/barbitosebastianhtml">BarbitoSebastian</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/proyecto01/camperocruzhtml">CamperoCruz</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/proyecto01/mamanilautarhtml">MamaniLautaro</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/proyecto01/martinezsebastianhtml">MartinezSebastian</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/proyecto01/munozrominahtml">MunozRomina</NavDropdown.Item>
               </NavDropdown>
+
+              {/* RUTAS RESTAURADAS a rutas simples */}
               <Nav.Link as={Link} to="/proyecto02">Proyecto 02</Nav.Link>
               <Nav.Link as={Link} to="/proyecto03">Proyecto 03</Nav.Link>
               <Nav.Link as={Link} to="/proyecto04">Proyecto 04</Nav.Link>
+
               <NavDropdown title="Proyecto 05" id="basic-nav-dropdown">
-                <NavDropdown.Item as={Link} to="/Juego">Game</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/JuegoEstrella">Juego Estrella</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/juego">Game</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/juegoestrella">Juego Estrella</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             {usuario && (

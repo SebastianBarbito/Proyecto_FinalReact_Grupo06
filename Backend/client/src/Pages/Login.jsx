@@ -9,14 +9,21 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const nav = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => { // Agregar async para manejar la respuesta
     e.preventDefault();
-    if (login(email, password)) {
-      nav('/'); // Redirigimos al home, que mostrará la página de bienvenida
+
+    const result = await login({ 
+      email: email, 
+      password: password 
+    });
+
+    if (result.success) {
+      nav('/');
     } else {
-      alert('Credenciales inválidas');
+      alert(result.message); 
     }
   };
+
 
   const handleRegistro = () => {
     nav('/register');
@@ -29,7 +36,7 @@ export default function Login() {
         <div className="form-group">
           <input
             type="email"
-            placeholder="Correo"
+            placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

@@ -5,7 +5,7 @@ import { Container, Row, Col, Card, Form, Button, ListGroup, Badge } from 'react
 
 function Registrar() {
     const nav = useNavigate();
-    const { login } = useAutorizacion();
+    const { login, register } = useAutorizacion();
     const [form, setForm] = useState({
         nombre: '',
         apellido: '',
@@ -60,17 +60,38 @@ function Registrar() {
         setErrors((prev) => ({ ...prev, [name]: undefined }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => { // La función DEBE ser async
         e.preventDefault();
         if (validate()) {
-            // Autenticar automáticamente tras registro
-            const ok = login(form.email, form.password);
-            if (ok) {
-                alert('¡Registro exitoso! Ya puedes acceder a los juegos.');
-                nav('/juegos');
+            // 1. Preparar los datos solo con los campos que el BACKEND necesita
+            const userData = {
+                username: form.username,
+                correo: form.email, 
+                password: form.password,
+                nombre: form.nombre,
+                apellido: form.apellido,
+                edad: form.edad,
+                motivo: form.motivo,    
+                horas: form.horas
+            };
+
+        // 2. Llamada al endpoint de REGISTRO
+        const registerResult = await register(userData);
+
+            if (registerResult.success) {
+                // 3. Si el registro fue exitoso, intentar LOGIN automáticamente
+                const loginResult = await login({ correo: form.email, password: form.password });
+
+                if (loginResult.success) {
+                    alert('¡Registro exitoso! Ya puedes acceder a los juegos.');
+                    nav('/Games');
+                } else {
+                    alert('Registro exitoso, pero ocurrió un error al iniciar sesión automáticamente. Intenta iniciar sesión manualmente.');
+                    nav('/login');
+                }
             } else {
-                alert('Ocurrió un error al autenticar. Intenta iniciar sesión manualmente.');
-                nav('/login');
+                // Error en el registro (ej: usuario ya existe)
+                alert(`Error al registrar: ${registerResult.message}`);
             }
         }
     };

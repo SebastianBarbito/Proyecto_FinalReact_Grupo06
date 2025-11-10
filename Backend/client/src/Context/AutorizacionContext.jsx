@@ -68,14 +68,33 @@ export function AutorizacionProvider({ children }) {
     buscarUsuarios();
   }, [buscarUsuarios]);
 
+  const register = useCallback(async (userData) => {
+    try {
+        setIsLoading(true);
+        // Llama al endpoint de creación de usuario
+        const response = await axiosInstance.post('/crearUsuario', userData);
+        
+        // Si el registro es exitoso, devuelve el usuario creado
+        return { success: true, user: response.data };
+    } catch (error) {
+        console.error("Error en registro:", error);
+        // Capturar mensajes de error específicos (ej: Usuario/correo ya existe)
+        const message = error?.response?.data?.message || 'Error desconocido al registrar';
+        return { success: false, message };
+    } finally {
+        setIsLoading(false);
+    }
+  }, []);
+
   const valorDelContexto = useMemo(() => ({
     usuario,
     isAuthenticated: !!usuario,
     isLoading,
     login,
     logout,
-    refreshUsers: buscarUsuarios
-  }), [usuario, login, logout, isLoading]);
+    refreshUsers: buscarUsuarios,
+    register,
+  }), [usuario, login, logout, register, isLoading]);
 
   return (
     <AutorizacionContext.Provider value={ valorDelContexto }>
